@@ -8,15 +8,17 @@ namespace ServiceLayer
     public class GameService : IGameService
     {
         private Game _game;
+        private Dice _dice;
 
         public GameService()
         {
             _game = new Game();
+            _dice = new Dice(1, 6);
         }
 
         public int DiceRoll(int playerNumber)
         {
-            throw new NotImplementedException();
+            return _dice.Roll();
         }
 
         public int GetPositionToken(int playerNumber)
