@@ -19,7 +19,7 @@ namespace SnakesAndLadders
 
             var service = ActivatorUtilities.CreateInstance<GameService>(host.Services);
 
-            service.StartGame();
+            service.StartGame(2);
         }
 
         static void BuildConfig(IConfigurationBuilder builder)
