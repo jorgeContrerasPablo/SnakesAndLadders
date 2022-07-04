@@ -15,11 +15,47 @@ namespace SnakesAndLadders
     {
         static void Main(string[] args)
         {
-            var host = AppStartup();
+            try
+            {
+                var host = AppStartup();
 
-            var service = ActivatorUtilities.CreateInstance<GameService>(host.Services);
+                var service = ActivatorUtilities.CreateInstance<GameService>(host.Services);
 
-            service.StartGame(2);
+                string[] commands = new string[2];
+
+                Console.WriteLine("Write exit to finish the game.");
+
+                Console.WriteLine("Set number of players to play.");
+                commands = Console.ReadLine().Split(" ");
+                service.StartGame(Int32.Parse(commands[0]));
+                // format exception
+                while (commands[0] != "exit")
+                {
+                    try
+                    {
+                        Console.WriteLine("Set number of player to roll dice.");
+                        commands = Console.ReadLine().Split(" ");
+                        int playerNumber = Int32.Parse(commands[0]);
+                        int spacesToMove = service.DiceRoll(playerNumber);
+                        Console.WriteLine($"Player { playerNumber} moves {spacesToMove} spaces.");
+                        int finalPositionPlayer = service.MovePlayerToken(spacesToMove, playerNumber);
+                        Console.WriteLine($"Player { playerNumber} moves to {finalPositionPlayer}.");
+                        if (finalPositionPlayer == service.GetFinalPosition())
+                        {
+                            Console.WriteLine($"Player {playerNumber}, Won!!");
+                            break;
+                        }
+                    }
+                    catch (FormatException)
+                    {
+                        Console.WriteLine($"Please insert a correct format command");
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine($"Exception: {exception.Message}");
+            }
         }
 
         static void BuildConfig(IConfigurationBuilder builder)
