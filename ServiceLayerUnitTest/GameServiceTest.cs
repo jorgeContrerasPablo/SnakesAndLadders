@@ -62,5 +62,38 @@ namespace ServiceLayerUnitTest
             _gameService.MovePlayerToken(diceRollReturns, 1);
             _gameService.MovePlayerToken(secondDiceRollReturns, 1).Should().Be(8);
         }
+
+        /// <summary>
+        /// US2-UAT1
+        /// Given the token is on square 97,
+        /// When the token is moved 3 spaces,
+        /// Then the token is on square 100,
+        /// And the player has won the game.
+        /// </summary>
+        [Fact]
+        public void FinalPositionPlayerHasWonTheGame()
+        {
+            int finalPosition = _gameService.GetFinalPosition();
+            _gameService.MovePlayerToken(96, 1);
+            int diceRollReturns = 3;
+            _gameService.MovePlayerToken(diceRollReturns, 1).Should().Be(finalPosition);
+        }
+
+        /// <summary>
+        /// US2-UAT2
+        /// Given the token is on square 97,
+        /// When the token is moved 4 spaces,
+        /// Then the token is on square 97,
+        /// And the player has not won the game.
+        /// </summary>
+        [Fact]
+        public void OverFinalPositionPlayerHasNotWonTheGame()
+        {
+            int finalPosition = _gameService.GetFinalPosition();
+            _gameService.MovePlayerToken(96, 1);
+            int diceRollReturns = 4;
+            _gameService.MovePlayerToken(diceRollReturns, 1).Should().NotBe(finalPosition);
+            _gameService.MovePlayerToken(diceRollReturns, 1).Should().NotBe(97);
+        }
     }
 }
