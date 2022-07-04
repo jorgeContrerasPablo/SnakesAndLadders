@@ -95,5 +95,36 @@ namespace ServiceLayerUnitTest
             _gameService.MovePlayerToken(diceRollReturns, 1).Should().NotBe(finalPosition);
             _gameService.MovePlayerToken(diceRollReturns, 1).Should().NotBe(97);
         }
+
+        /// <summary>
+        /// US3-UAT1
+        /// Given the game is started,
+        /// When the player rolls a dice,
+        /// Then the result should be between 1-6 inclusive.
+        /// </summary>
+        [Fact]
+        public void DiceRollShouldBeBetween1And6Inclusive()
+        {
+            _gameService.DiceRoll(1).
+                Should().
+                BeLessThanOrEqualTo(6).
+                And.
+                BeGreaterThanOrEqualTo(1);
+        }
+
+        /// <summary>
+        /// US3-UAT2
+        /// Given the player rolls a 4,
+        /// When they move their token,
+        /// Then the token should move 4 spaces.
+        /// </summary>
+        [Fact]
+        public void Rolls4ShouldMove4Spaces()
+        {
+            int diceRollReturns = 4;
+            int actualPosition = _gameService.GetPositionToken(1);
+            int positionAfterMoved = _gameService.MovePlayerToken(diceRollReturns, 1);
+            (positionAfterMoved-actualPosition).Should().Be(diceRollReturns);
+        }
     }
 }

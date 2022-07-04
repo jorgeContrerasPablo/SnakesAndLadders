@@ -21,7 +21,8 @@ namespace ServiceLayer
 
         public int GetPositionToken(int playerNumber)
         {
-            throw new NotImplementedException();
+            Player player = _game.GetPlayer(playerNumber);
+            return player.Token.Position;
         }
 
         public int MovePlayerToken(int spaces, int playerNumber)
@@ -36,12 +37,7 @@ namespace ServiceLayer
 
         public void StartGame(int numberPlayers)
         {
-            List<Player> Players;
-
-            for (int numberPlayer = 1; numberPlayer <= numberPlayers; numberPlayer++)
-            {
-
-            }
+            _game.Start(numberPlayers);
         }
     }
 }
