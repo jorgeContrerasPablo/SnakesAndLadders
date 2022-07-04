@@ -14,6 +14,10 @@ namespace DomainUnitTest
             _board = new Board(100);
         }
 
+        /// <summary>
+        /// Snake move.
+        /// From position 16 to 6.
+        /// </summary>
         [Fact]
         public void SnakeTest()
         {
@@ -21,6 +25,10 @@ namespace DomainUnitTest
             _board.MoveToken(2, token).Should().Be(6);
         }
 
+        /// <summary>
+        /// Ladder move.
+        /// From position 15 to 26.
+        /// </summary>
         [Fact]
         public void LadderTest()
         {
@@ -28,6 +36,10 @@ namespace DomainUnitTest
             _board.MoveToken(1, token).Should().Be(26);
         }
 
+        /// <summary>
+        /// Normal square move.
+        /// No extra movement.
+        /// </summary>
         [Fact]
         public void NormalSquareTest()
         {

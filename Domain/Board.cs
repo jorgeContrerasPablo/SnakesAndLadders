@@ -39,12 +39,41 @@ namespace Domain
 
         private void InitSnakes()
         {
-            _squares[15] = new Snake(16, 6);
+            AddSnake(16, 6);
+            AddSnake(49, 11);
+            AddSnake(46, 25);
+            AddSnake(64, 60);
+            AddSnake(62, 19);
+            AddSnake(74, 53);
+            AddSnake(89, 68);
+            AddSnake(92, 88);
+            AddSnake(95, 75);
+            AddSnake(99, 80);
+        }
+
+        private void AddSnake(int firstPosition, int finalPosition)
+        {
+            _squares[firstPosition-1] = new Snake(firstPosition, finalPosition);
         }
 
         private void InitLadders()
         {
-            _squares[14] = new Ladder(15, 26);
+            AddLadder(2, 38);
+            AddLadder(7, 14);
+            AddLadder(8, 31);
+            AddLadder(15, 26);
+            AddLadder(21, 42);
+            AddLadder(28, 84);
+            AddLadder(36, 44);
+            AddLadder(51, 67);
+            AddLadder(71, 91);
+            AddLadder(78, 98);
+            AddLadder(87, 94);
+        }
+
+        private void AddLadder(int firstPosition, int finalPosition)
+        {
+            _squares[firstPosition-1] = new Ladder(firstPosition, finalPosition);
         }
     }
 }
