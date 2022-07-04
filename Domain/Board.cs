@@ -17,7 +17,12 @@ namespace Domain
 
         public int MoveToken(int spaces, Token token)
         {
-            throw new NotImplementedException();
+            int initPosition = token.Position;
+            int finalPosition = initPosition + spaces;
+            // TODO Check over final position.
+            // TODO Aditional movement.
+            token.Position = finalPosition;
+            return finalPosition;
         }
     }
 }

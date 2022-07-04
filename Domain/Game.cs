@@ -33,6 +33,11 @@ namespace Domain
             return Players.FirstOrDefault(player => player.PlayerNumber == playerNumber);
         }
 
+        public int MovePlayerToken(int spaces, Player player)
+        {
+            return Board.MoveToken(spaces, player.Token);
+        }
+
         private void PlayersInitialize(int numberPlayers)
         {
             Players = new List<Player>();

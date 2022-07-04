@@ -27,7 +27,7 @@ namespace ServiceLayer
 
         public int MovePlayerToken(int spaces, int playerNumber)
         {
-            throw new NotImplementedException();
+            return _game.MovePlayerToken(spaces, _game.GetPlayer(playerNumber));
         }
 
         public int GetFinalPosition()
