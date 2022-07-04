@@ -93,7 +93,7 @@ namespace ServiceLayerUnitTest
             _gameService.MovePlayerToken(96, 1);
             int diceRollReturns = 4;
             _gameService.MovePlayerToken(diceRollReturns, 1).Should().NotBe(finalPosition);
-            _gameService.MovePlayerToken(diceRollReturns, 1).Should().NotBe(97);
+            _gameService.MovePlayerToken(diceRollReturns, 1).Should().Be(97);
         }
 
         /// <summary>

@@ -19,10 +19,21 @@ namespace Domain
         {
             int initPosition = token.Position;
             int finalPosition = initPosition + spaces;
-            // TODO Check over final position.
+
+            // Check over final position.
+            if(IsOverFinal(finalPosition))
+            {
+                finalPosition = initPosition;
+            }
+
             // TODO Aditional movement.
             token.Position = finalPosition;
             return finalPosition;
+        }
+
+        private bool IsOverFinal(int finalPosition)
+        {
+            return finalPosition > _squares.Length;
         }
     }
 }

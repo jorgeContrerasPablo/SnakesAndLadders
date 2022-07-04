@@ -32,7 +32,7 @@ namespace ServiceLayer
 
         public int GetFinalPosition()
         {
-            throw new NotImplementedException();
+            return _game.NumberSpaces;
         }
 
         public void StartGame(int numberPlayers)
