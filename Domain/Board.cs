@@ -10,9 +10,9 @@ namespace Domain
 
         public Board(int numberSquares)
         {
-            _squares = new Square[numberSquares]
-                .Select(h => new NormalSquare())
-                .ToArray();
+            _squares = Enumerable.Repeat<Square>(new NormalSquare(0, 0),100).ToArray();
+            InitSnakes();
+            InitLadders();
         }
 
         public int MoveToken(int spaces, Token token)
@@ -23,17 +23,28 @@ namespace Domain
             // Check over final position.
             if(IsOverFinal(finalPosition))
             {
-                finalPosition = initPosition;
+                return initPosition;
             }
 
-            // TODO Aditional movement.
             token.Position = finalPosition;
-            return finalPosition;
+            // Aditional movement.
+            _squares[finalPosition-1].ExtraAction(token);
+            return token.Position;
         }
 
         private bool IsOverFinal(int finalPosition)
         {
             return finalPosition > _squares.Length;
+        }
+
+        private void InitSnakes()
+        {
+            _squares[15] = new Snake(16, 6);
+        }
+
+        private void InitLadders()
+        {
+            _squares[14] = new Ladder(15, 26);
         }
     }
 }

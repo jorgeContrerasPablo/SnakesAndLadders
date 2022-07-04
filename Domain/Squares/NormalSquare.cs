@@ -8,9 +8,11 @@ namespace Domain.Squares
 {
     public class NormalSquare : Square
     {
+        public NormalSquare(int firstPosition, int finalPosition)
+            : base(firstPosition, finalPosition) { }
+
         public override void ExtraAction(Token token)
         {
-            throw new NotImplementedException();
         }
     }
 }

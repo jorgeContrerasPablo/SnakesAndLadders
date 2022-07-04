@@ -8,9 +8,19 @@ namespace Domain.Squares
 {
     public class Snake : Square
     {
+        public Snake(int firstPosition, int finalPosition)
+            : base(firstPosition, finalPosition) { }
+
         public override void ExtraAction(Token token)
         {
-            throw new NotImplementedException();
+            if(token.Position == StartPosition)
+            {
+                token.Position = FinalPosition;
+            }
+            else
+            {
+                throw new Exception("Snake final position is not same token position");
+            }
         }
     }
 }
